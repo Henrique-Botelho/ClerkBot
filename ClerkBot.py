@@ -3,6 +3,7 @@ from backChatBot import sendMessage
 from time import sleep
 
 listContato = []
+listImages = []
 loading = True
 # Criar janela e layouts
 def janelaEnviar():
@@ -11,7 +12,7 @@ def janelaEnviar():
         [sg.Text("Enviar mensagens", font="arial 24", justification="center")],
         [sg.Text("Digite o nome do contato e/ou grupo", font="arial 10")],
         [sg.Text("Contato:", font="arial 12"),sg.Input(key="contato", size=(25,2), font="arial 12"),sg.Button("Adicionar")],
-        [sg.Text("Contatos:",font="arial 12"),sg.Text(f"{listContato}", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
+        [sg.Text("Contatos:",font="arial 12"),sg.Text(f"{'' if len(listContato) < 0 else listContato}", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
         [sg.Text("Imagem:", font="arial 12"),sg.Input(key="img", size=(25,2),font="arial 12"), sg.FileBrowse()],
         [sg.Text("Documento:", font="arial 12"),sg.Input(key="doc", size=(25,2),font="arial 12"), sg.FileBrowse()],
         [sg.Text("Digite sua mensagem:", font="arial 12")],
@@ -35,6 +36,7 @@ enviar,remover = janelaEnviar(), None
 # Leitura de eventos
 
 while True:
+    
     window,event,values = sg.read_all_windows()
     # Fechar a janela
     if window == enviar and event == sg.WIN_CLOSED:
@@ -62,15 +64,13 @@ while True:
     if window == enviar and event == "Enviar":
         mensagem = values['newMessage']
         imagem = str(values['img'])
+        imagem.split("/")
+        newMsg =imagem.replace("/", "\\")
         documento = str(values['doc'])
-        imagem.replace("/", "\\\\")
-        documento.replace("/", "\\\\")
-        
-        print(imagem)
-        print(documento)
-
+        print(newMsg)
+        listImages.append(imagem)
         if mensagem != "" and len(listContato) > 0:
-            sendMessage(mensagem, listContato, imagem, documento)
+            sendMessage(mensagem, listContato, newMsg, documento)
             
         else:
             sg.popup_auto_close("Adicione um contato e/ou digite uma mensagem")
@@ -84,7 +84,7 @@ while True:
         value = values['valueRemove']
         if value != "":   
             listContato.remove(value)
-            window['valueContato'].update("" if len(listContato) < 0 else listContato)
+            window['valueContato'].update(listContato)
             window['valueRemove'].update("")
             loading = False
         else:

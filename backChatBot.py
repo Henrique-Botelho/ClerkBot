@@ -1,13 +1,14 @@
 from time import sleep
 import pyautogui
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 
 
 # Configurações de tempo
-timeLoadControl = 45
-timeControl = 2
+timeLoadControl = 30
+timeControl = 1.5
 
 
 def sendMessage(message, contacts, image, document):
@@ -35,21 +36,19 @@ def sendMessage(message, contacts, image, document):
             clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
             clip.click()
             sleep(timeControl)
-            clipMidia = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/span')
-            clipMidia.click()
+            clipMidia = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
             sleep(timeControl)
-            pyautogui.write(image)
-            pyautogui.press("Enter")
+            clipMidia.send_keys(image)
             sleep(timeControl)
-            pyautogui.press("Enter")
+            send = navegador.find_element('xpath', '//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]/div/div')
+            send.click()
+
         if document != "":
             clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
             clip.click()
             sleep(timeControl)
-            clipDocs = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/span')
-            clipDocs.click()
-            sleep(timeControl)
-            pyautogui.write(document)
-            pyautogui.press("Enter")
+            clipDocs = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
+            clipDocs.send_keys(document)
             sleep(timeControl)
             pyautogui.press("Enter")
+
