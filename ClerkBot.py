@@ -12,6 +12,7 @@ def janelaEnviar():
         [sg.Text("Digite o nome do contato e/ou grupo", font="arial 10")],
         [sg.Text("Contato:", font="arial 12"),sg.Input(key="contato", size=(25,2), font="arial 12"),sg.Button("Adicionar")],
         [sg.Text("Contatos:",font="arial 12"),sg.Text(f"{listContato}", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
+        [sg.Text("Imagem:", font="arial 12"),sg.Input(key="img", size=(25,2),font="arial 12"), sg.FileBrowse()],
         [sg.Text("Digite sua mensagem:", font="arial 12")],
         [sg.Multiline(key="newMessage", size=(45,5))],
         [sg.Button("Enviar", font="arial 13")],
@@ -29,9 +30,9 @@ def Remover():
     ]
     return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True)
 
-# Criar janelas 
 enviar,remover = janelaEnviar(), None
 # Leitura de eventos
+
 while True:
     window,event,values = sg.read_all_windows()
     # Fechar a janela
@@ -59,6 +60,9 @@ while True:
          
     if window == enviar and event == "Enviar":
         mensagem = values['newMessage']
+        imagem = values['img']
+        print(imagem)
+        print(mensagem)
         if mensagem != "" and len(listContato) > 0:
             sendMessage(mensagem, listContato)
         else:
