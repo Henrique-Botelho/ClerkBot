@@ -11,7 +11,7 @@ def janelaEnviar():
         [sg.Text("Enviar mensagens", font="arial 24", justification="center")],
         [sg.Text("Digite o nome do contato e/ou grupo", font="arial 10")],
         [sg.Text("Contato:", font="arial 12"),sg.Input(key="contato", size=(25,2), font="arial 12"),sg.Button("Adicionar")],
-        [sg.Text("Contatos:",font="arial 12"),sg.Text("", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
+        [sg.Text("Contatos:",font="arial 12"),sg.Text(f"{listContato}", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
         [sg.Text("Digite sua mensagem:", font="arial 12")],
         [sg.Multiline(key="newMessage", size=(45,5))],
         [sg.Button("Enviar", font="arial 13")],
