@@ -27,7 +27,16 @@ O ClerkBot é um robo feito para automatizar o envio da mesma mensagem para dive
 Instale as bibliotecas utilizando o comando:
 
 ```
-$ pip ...
+$ pip install pyautogui
+```
+```
+$ pip install pysimplegui
+```
+```
+$ pip install selenium
+```
+```
+$ pip install webdrive-manager
 ```
 
 ---

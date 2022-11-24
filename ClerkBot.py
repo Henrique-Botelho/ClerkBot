@@ -3,7 +3,7 @@ from backChatBot import sendMessage
 from time import sleep
 
 listContato = []
-
+loading = True
 # Criar janela e layouts
 def janelaEnviar():
     sg.theme('Reddit')
@@ -43,7 +43,8 @@ while True:
     if window == enviar and event == "Remover":
         if len(listContato) > 0:
             remover = Remover()
-            enviar.hide()
+            enviar.close()
+            enviar = None
         else:
             sg.popup_auto_close("Você não pode excluir sem ter um contato")
      
@@ -64,14 +65,16 @@ while True:
             sg.popup_auto_close("Adicione um contato e/ou digite uma mensagem")
         
     if window == remover and event == "Voltar":
-        remover.hide()
-        enviar.un_hide()
+        remover.close()
+        remover = None
+        enviar = janelaEnviar()
         
     if window == remover and event == "Remover":
         value = values['valueRemove']
         if value != "":   
             listContato.remove(value)
-            window['valueContato'].update(listContato)
+            window['valueContato'].update("" if len(listContato) < 0 else listContato)
             window['valueRemove'].update("")
+            loading = False
         else:
            sg.popup_auto_close("Digite o contato que deseja apagar") 
