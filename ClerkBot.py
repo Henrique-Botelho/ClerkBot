@@ -17,7 +17,7 @@ def janelaEnviar():
         [sg.Button("Enviar", font="arial 13")],
     ]
     
-    return sg.Window('ClerkBot', layout=layout, size=(450,320), element_justification="center", finalize=True)
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True)
 
 def Remover():
     sg.theme('Reddit')
