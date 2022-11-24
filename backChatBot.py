@@ -10,7 +10,7 @@ timeLoadControl = 45
 timeControl = 2
 
 
-def sendMessage(message, contacts):
+def sendMessage(message, contacts, image, document):
     # Download e definição do driver
     servico = Service(ChromeDriverManager().install())
     navegador = webdriver.Chrome(service=servico)
@@ -31,3 +31,25 @@ def sendMessage(message, contacts):
         sleep(timeControl)
         pyautogui.press("Enter")
         sleep(timeControl)
+        if image != "":
+            clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
+            clip.click()
+            sleep(timeControl)
+            clipMidia = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/span')
+            clipMidia.click()
+            sleep(timeControl)
+            pyautogui.write(image)
+            pyautogui.press("Enter")
+            sleep(timeControl)
+            pyautogui.press("Enter")
+        if document != "":
+            clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
+            clip.click()
+            sleep(timeControl)
+            clipDocs = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/span')
+            clipDocs.click()
+            sleep(timeControl)
+            pyautogui.write(document)
+            pyautogui.press("Enter")
+            sleep(timeControl)
+            pyautogui.press("Enter")
