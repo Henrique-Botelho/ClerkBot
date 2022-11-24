@@ -58,7 +58,7 @@ while True:
          
     if window == enviar and event == "Enviar":
         mensagem = values['newMessage']
-        if mensagem != "" and len(listContato) > 1:
+        if mensagem != "" and len(listContato) > 0:
             sendMessage(mensagem, listContato)
         else:
             sg.popup_auto_close("Adicione um contato e/ou digite uma mensagem")
