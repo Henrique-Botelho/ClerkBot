@@ -13,6 +13,7 @@ def janelaEnviar():
         [sg.Text("Contato:", font="arial 12"),sg.Input(key="contato", size=(25,2), font="arial 12"),sg.Button("Adicionar")],
         [sg.Text("Contatos:",font="arial 12"),sg.Text(f"{listContato}", key="contatos", font="arial 12", size=(25,2)),sg.Button("Remover")],
         [sg.Text("Imagem:", font="arial 12"),sg.Input(key="img", size=(25,2),font="arial 12"), sg.FileBrowse()],
+        [sg.Text("Documento:", font="arial 12"),sg.Input(key="doc", size=(25,2),font="arial 12"), sg.FileBrowse()],
         [sg.Text("Digite sua mensagem:", font="arial 12")],
         [sg.Multiline(key="newMessage", size=(45,5))],
         [sg.Button("Enviar", font="arial 13")],
@@ -60,11 +61,17 @@ while True:
          
     if window == enviar and event == "Enviar":
         mensagem = values['newMessage']
-        imagem = values['img']
+        imagem = str(values['img'])
+        documento = str(values['doc'])
+        imagem.replace("/", "\\\\")
+        documento.replace("/", "\\\\")
+        
         print(imagem)
-        print(mensagem)
+        print(documento)
+
         if mensagem != "" and len(listContato) > 0:
-            sendMessage(mensagem, listContato)
+            sendMessage(mensagem, listContato, imagem, documento)
+            
         else:
             sg.popup_auto_close("Adicione um contato e/ou digite uma mensagem")
         
