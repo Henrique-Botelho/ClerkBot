@@ -24,7 +24,14 @@ O ClerkBot é um robo feito para automatizar o envio da mesma mensagem para dive
 
 ## :memo: Testando a aplicação
 
-Instale as bibliotecas utilizando o comando:
+Para ter acesso ao código, precisará clonar o repositório.
+Utilize o comando:
+
+```
+$ git clone https://github.com/Henrique-Botelho/ClerkBot.git
+```
+
+Instale as bibliotecas:
 
 ```
 $ pip install pyautogui
