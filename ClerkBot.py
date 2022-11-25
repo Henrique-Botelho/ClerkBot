@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from backChatBot import sendMessage
 from time import sleep
 
+# Dados da aplicação 
 listContato = []
 listImages = []
 listDocs = []
@@ -45,10 +46,9 @@ def Remover():
     return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True)
 
 inicial,enviar,remover = janelaInicial(),None, None
-# Leitura de eventos
 
+# Leitura de eventos
 while True:
-    
     window,event,values = sg.read_all_windows()
     # Fechar a janela
     if window == inicial and event == sg.WIN_CLOSED:
@@ -84,6 +84,7 @@ while True:
             enviar = None
         else:
             sg.popup_auto_close("Você não pode excluir sem ter um contato")     
+
     # Adicionar e remover imagem
     if window == enviar and event == "Adicionar Imagem":
         imagem = str(values['img'])
