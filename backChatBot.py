@@ -7,11 +7,11 @@ from selenium import webdriver
 
 
 # Configurações de tempo
-timeLoadControl = 30
+timeLoadControl = 35
 timeControl = 1.5
 
 
-def sendMessage(message, contacts, image, document):
+def sendMessage(message, contacts, images, documents):
     # Download e definição do driver
     servico = Service(ChromeDriverManager().install())
     navegador = webdriver.Chrome(service=servico)
@@ -32,23 +32,28 @@ def sendMessage(message, contacts, image, document):
         sleep(timeControl)
         pyautogui.press("Enter")
         sleep(timeControl)
-        if image != "":
-            clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
-            clip.click()
-            sleep(timeControl)
-            clipMidia = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
-            sleep(timeControl)
-            clipMidia.send_keys(image)
-            sleep(timeControl)
-            send = navegador.find_element('xpath', '//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]/div/div')
-            send.click()
+        if len(images) > 0:
+            for image in images:
+                clip = navegador.find_element(By.CSS_SELECTOR,  'span[data-icon="clip"]')
+                clip.click()
+                sleep(timeControl)
+                clipMidia = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
+                sleep(timeControl)
+                clipMidia.send_keys(image)
+                sleep(timeControl)
+                send = navegador.find_element(By.XPATH, '//div[contains(@class, "_165_h _2HL9j")]')
+                send.click()
+                sleep(timeControl)
 
-        if document != "":
-            clip = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span')
-            clip.click()
-            sleep(timeControl)
-            clipDocs = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
-            clipDocs.send_keys(document)
-            sleep(timeControl)
-            pyautogui.press("Enter")
+        if len(documents) > 0:
+            for document in documents:
+                clip = navegador.find_element(By.CSS_SELECTOR,  'span[data-icon="clip"]')
+                clip.click()
+                sleep(timeControl)
+                clipDocs = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
+                clipDocs.send_keys(document)
+                sleep(timeControl)
+                send = navegador.find_element(By.XPATH, '//div[contains(@class, "_165_h _2HL9j")]')
+                send.click()
+                sleep(timeControl)
 
