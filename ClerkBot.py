@@ -55,13 +55,13 @@ photo = PhotoImage(file="logo.png")
 Tela.iconphoto(False, photo)
 
 Tela.title("ClerkBot")
-Tela.geometry("720x480+400+200")
+Tela.geometry("720x480")
 Tela.config(background="gray")
 video = tkVideoPlayer.TkinterVideo(Tela, scaled=True)
 video.load("clerkbot.mp4")
 video.pack(expand=True, fill="both")
 video.play()
-Tela.after(8500, Tela.destroy)
+Tela.after(20000, Tela.destroy)
 Tela.mainloop()
 
 inicial,enviar,remover = janelaInicial(),None, None
