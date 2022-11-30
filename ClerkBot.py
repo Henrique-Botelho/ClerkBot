@@ -1,21 +1,23 @@
 import PySimpleGUI as sg
 from backChatBot import sendMessage
 from time import sleep
+from tkinter import *
+from tkinter.ttk import *
+import tkVideoPlayer
 
 # Dados da aplicação 
 listContato = []
 listImages = []
 listDocs = []
-imagem = ""
 
 # Criar janela e layouts
 def janelaInicial():
     sg.theme('Reddit')
     layout = [
-        [sg.Image(source=imagem)],
-        [sg.Button("Bot", font="arial 13"), sg.Button("Como funciona?", font="arial 13")]
+        [sg.Image(source="logo_def.png")],
+        [sg.Button("Bot", font="arial 13", size=(35), button_color='#5271FF', bor='#5271FF'), sg.Button("Como funciona?", font="arial 13", size=(35))]
     ]
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(400, 200))
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 480), background_color='#03989E', icon='logo_robot.ico')
     
 def janelaEnviar():
     sg.theme('Reddit')
@@ -33,7 +35,7 @@ def janelaEnviar():
         [sg.Button("Voltar",font="arial 13"), sg.Button("Enviar", font="arial 13")],
     ]
     
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True)
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, icon='logo_robot.ico')
 
 def Remover():
     sg.theme('Reddit')
@@ -43,7 +45,24 @@ def Remover():
         [sg.Text("Contatos:"),sg.Text(f"{listContato}" , key="valueContato", size=(30,2))],
         [sg.Button("Voltar"), sg.Button("Remover"), sg.Button("Remover tudo")]
     ]
-    return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True)
+    return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True, icon='logo_robot.ico')
+
+# Video de abertura
+Tela = Tk()
+
+photo = PhotoImage(file="logo.png")
+
+Tela.iconphoto(False, photo)
+
+Tela.title("ClerkBot")
+Tela.geometry("720x480+600+200")
+Tela.config(background="gray")
+video = tkVideoPlayer.TkinterVideo(Tela, scaled=True)
+video.load("clerkbot.mp4")
+video.pack(expand=True, fill="both")
+video.play()
+Tela.after(8000, Tela.destroy)
+Tela.mainloop()
 
 inicial,enviar,remover = janelaInicial(),None, None
 
