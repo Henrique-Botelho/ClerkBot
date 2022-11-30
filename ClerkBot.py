@@ -15,7 +15,7 @@ def janelaInicial():
     sg.theme('Reddit')
     layout = [
         [sg.Image(source="logo_def.png")],
-        [sg.Button("Bot", font="arial 13", size=(35), button_color='#5271FF', bor='#5271FF'), sg.Button("Como funciona?", font="arial 13", size=(35))]
+        [sg.Button("Bot", font="arial 13", size=(35), button_color='#5271FF'), sg.Button("Como funciona?", font="arial 13", size=(35))]
     ]
     return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 480), background_color='#03989E', icon='logo_robot.ico')
     
@@ -55,13 +55,13 @@ photo = PhotoImage(file="logo.png")
 Tela.iconphoto(False, photo)
 
 Tela.title("ClerkBot")
-Tela.geometry("720x480+600+200")
+Tela.geometry("720x480+400+200")
 Tela.config(background="gray")
 video = tkVideoPlayer.TkinterVideo(Tela, scaled=True)
 video.load("clerkbot.mp4")
 video.pack(expand=True, fill="both")
 video.play()
-Tela.after(8000, Tela.destroy)
+Tela.after(8500, Tela.destroy)
 Tela.mainloop()
 
 inicial,enviar,remover = janelaInicial(),None, None
