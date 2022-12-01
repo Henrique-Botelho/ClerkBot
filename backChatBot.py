@@ -81,4 +81,3 @@ def sendMessage(message, contacts, images, documents):
                 send = navegador.find_element(By.XPATH, '//div[contains(@class, "_165_h _2HL9j")]')
                 send.click()
                 sleep(timeControl)
-

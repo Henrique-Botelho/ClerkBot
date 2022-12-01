@@ -14,10 +14,10 @@ listDocs = []
 def janelaInicial():
     sg.theme('Reddit')
     layout = [
-        [sg.Image(source="logo_def.png")],
-        [sg.Button("Bot", font="arial 13", size=(35), button_color='#5271FF'), sg.Button("Como funciona?", font="arial 13", size=(35))]
+        [sg.Image(source="assets/logo_def.png")],
+        [sg.Button("Bot", size=(15,20), font="arial 16 ", button_color='#5271FF'), sg.Button("Como funciona?", font="arial 16 ", size=(15,20))]
     ]
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 480), background_color='#03989E', icon='logo_robot.ico')
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
     
 def janelaEnviar():
     sg.theme('Reddit')
@@ -47,40 +47,108 @@ def Remover():
     ]
     return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True, icon='logo_robot.ico')
 
+def help1():
+    sg.theme('Reddit')
+    layout = [
+        [sg.Image(source="assets/ajuda1.png")],
+        [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Continuar", size=(10), font="arial 16 ", button_color='#5271FF')]
+    ]
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+def help2():
+    sg.theme('Reddit')
+    layout = [
+        [sg.Image(source="assets/ajuda2.png")],
+        [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Continuar", size=(10), font="arial 16 ", button_color='#5271FF')]
+    ]
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+def help3():
+    sg.theme('Reddit')
+    layout = [
+        [sg.Image(source="assets/ajuda3.png")],
+        [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Tela Inicial", size=(10), font="arial 16 ", button_color='#5271FF')]
+    ]
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+
 # Video de abertura
 Tela = Tk()
 
-photo = PhotoImage(file="logo.png")
+photo = PhotoImage(file="assets/logo.png")
 
 Tela.iconphoto(False, photo)
 
 Tela.title("ClerkBot")
-Tela.geometry("720x480")
+Tela.geometry("720x500")
 Tela.config(background="gray")
 video = tkVideoPlayer.TkinterVideo(Tela, scaled=True)
 video.load("clerkbot.mp4")
 video.pack(expand=True, fill="both")
 video.play()
-Tela.after(20000, Tela.destroy)
+Tela.after(15000, Tela.destroy)
 Tela.mainloop()
 
-inicial,enviar,remover = janelaInicial(),None, None
+inicial,enviar,remover,ajuda1, ajuda2, ajuda3 = janelaInicial(),None, None, None, None, None
 
 # Leitura de eventos
 while True:
     window,event,values = sg.read_all_windows()
-    # Fechar a janela
+
+    # Fechamento das janelas
     if window == inicial and event == sg.WIN_CLOSED:
         break
     if window == enviar and event == sg.WIN_CLOSED:
         break
     if window == remover and event == sg.WIN_CLOSED:
         break
+    if window == ajuda1 and event == sg.WIN_CLOSED:
+        break
+    if window == ajuda2 and event == sg.WIN_CLOSED:
+        break
+    if window == ajuda3 and event == sg.WIN_CLOSED:
+        break
+
     # Eventos do botão
     if window == inicial and event == "Bot":
         enviar = janelaEnviar()
         inicial.close()
         inicial = None
+    if window == inicial and event == "Como funciona?":
+        ajuda1 = help1()
+        inicial.close()
+        inicial = None
+
+    # Como funciona primeira tela
+    if window == ajuda1 and event == "Voltar":
+        inicial = janelaInicial()
+        ajuda1.close()
+        ajuda1 = None
+        
+    if window == ajuda1 and event == "Continuar":
+        ajuda2 = help2()
+        ajuda1.close()
+        ajuda1 = None
+
+    # Como funciona segunda tela
+    if window == ajuda2 and event == "Voltar":
+        ajuda1 = help1()
+        ajuda2.close()
+        ajuda2 = None
+
+    if window == ajuda2 and event == "Continuar":
+        ajuda3 = help3()
+        ajuda2.close()
+        ajuda2 = None
+
+    # Como funciona terceira tela
+    if window == ajuda3 and event == "Voltar":
+        ajuda2 = help2()
+        ajuda3.close()
+        ajuda3 = None
+
+    if window == ajuda3 and event == "Tela Inicial":
+        inicial = janelaInicial()
+        ajuda3.close()
+        ajuda3 = None
+
         
     # Adicionar e remover contato
     if window == enviar and event == "Voltar":
