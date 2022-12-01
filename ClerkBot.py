@@ -15,7 +15,7 @@ def janelaInicial():
     sg.theme('Reddit')
     layout = [
         [sg.Image(source="assets/logo_def.png")],
-        [sg.Button("Bot", size=(15,20), font="arial 16 ", button_color='#5271FF'), sg.Button("Como funciona?", font="arial 16 ", size=(15,20))]
+        [sg.Button("Bot", size=(15,20), font="arial 16 ", button_color='#5271FF'), sg.Button("Como funciona?", font="arial 16 ", size=(15,20),button_color='#5271FF')]
     ]
     return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
     
@@ -35,7 +35,7 @@ def janelaEnviar():
         [sg.Button("Voltar",font="arial 13"), sg.Button("Enviar", font="arial 13")],
     ]
     
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, icon='logo_robot.ico')
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, icon='assets/logo_robot.ico')
 
 def Remover():
     sg.theme('Reddit')
@@ -45,7 +45,7 @@ def Remover():
         [sg.Text("Contatos:"),sg.Text(f"{listContato}" , key="valueContato", size=(30,2))],
         [sg.Button("Voltar"), sg.Button("Remover"), sg.Button("Remover tudo")]
     ]
-    return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True, icon='logo_robot.ico')
+    return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True, icon='assets/logo_robot.ico')
 
 def help1():
     sg.theme('Reddit')
@@ -53,21 +53,21 @@ def help1():
         [sg.Image(source="assets/ajuda1.png")],
         [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Continuar", size=(10), font="arial 16 ", button_color='#5271FF')]
     ]
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
 def help2():
     sg.theme('Reddit')
     layout = [
         [sg.Image(source="assets/ajuda2.png")],
         [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Continuar", size=(10), font="arial 16 ", button_color='#5271FF')]
     ]
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
 def help3():
     sg.theme('Reddit')
     layout = [
         [sg.Image(source="assets/ajuda3.png")],
         [sg.Button("Voltar", size=(10), font="arial 16 ", button_color='#5271FF'),sg.Button("Tela Inicial", size=(10), font="arial 16 ", button_color='#5271FF')]
     ]
-    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='logo_robot.ico')
+    return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
 
 # Video de abertura
 Tela = Tk()
