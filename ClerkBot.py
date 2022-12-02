@@ -19,6 +19,7 @@ def janelaInicial():
     ]
     return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, size=(720, 500), background_color='#03989E', icon='assets/logo_robot.ico')
     
+# Janela do bot 
 def janelaEnviar():
     sg.theme('Reddit')
     layout =[
@@ -37,6 +38,7 @@ def janelaEnviar():
     
     return sg.Window('ClerkBot', layout=layout, element_justification="center", finalize=True, icon='assets/logo_robot.ico')
 
+# Remover contatos
 def Remover():
     sg.theme('Reddit')
     layout = [
@@ -47,6 +49,7 @@ def Remover():
     ]
     return sg.Window("ClerkBot",layout= layout,element_justification="center", finalize=True, icon='assets/logo_robot.ico')
 
+# Janelas de Como funciona 
 def help1():
     sg.theme('Reddit')
     layout = [

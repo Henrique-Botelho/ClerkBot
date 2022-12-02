@@ -59,10 +59,14 @@ def sendMessage(message, contacts, images, documents):
             sleep(timeControl)
         if len(images) > 0:
             for image in images:
+                newImg =  image.split(".")
                 clip = navegador.find_element(By.CSS_SELECTOR,  'span[data-icon="clip"]')
                 clip.click()
                 sleep(timeControl)
-                clipMidia = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
+                if(newImg[1] == "mp4"):
+                    clipMidia = navegador.find_element('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[4]/button/input')
+                else:    
+                    clipMidia = navegador.find_element(By.CSS_SELECTOR, 'input[type=file]')
                 sleep(timeControl)
                 clipMidia.send_keys(image)
                 sleep(timeControl)
